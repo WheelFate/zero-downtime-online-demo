@@ -1,8 +1,8 @@
 # Dockerfile
 # This file defines how our application is packaged into a Docker container.
 
-# Use a lightweight Python base image
-FROM python:3.9-slim-buster
+# Use a lightweight Python base image based on Debian Bullseye (a newer, supported release)
+FROM python:3.9-slim-bullseye
 
 # Install curl inside the container.
 # We first update the package lists and then install curl.
