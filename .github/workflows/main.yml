@@ -67,9 +67,8 @@ jobs:
           # 2. Simulate Health Check on the NEW instance
           #    This is crucial: we verify the new version is working before switching traffic.
           echo "2. Performing health check on NEW instance..."
-          # We use 'curl' to make an HTTP request to the health endpoint (localhost:5000/health).
-          # The '--fail' flag makes curl exit with an error code if the request fails (e.g., 4xx/5xx status).
-          if curl --fail http://localhost:5000/health; then # Docker maps internal 5000 to external 5000 on the runner
+          # *** FIX APPLIED HERE: Use 'docker exec' to run curl inside the container ***
+          if docker exec "${{ env.APP_NAME }}-new" curl --fail http://localhost:5000/health; then
             echo "   Health check SUCCESS for NEW instance!"
           else
             echo "   Health check FAILED for NEW instance! Aborting deployment."
@@ -115,5 +114,5 @@ jobs:
         # the new version within the GitHub Actions runner environment.
         run: |
           echo "Verifying the 'current' running version (in this simulation):"
-          # Execute a curl command inside the 'current' container to get its output.
-          docker exec ${{ env.APP_NAME }}-current curl http://localhost:5000
+          # *** FIX APPLIED HERE: Use 'docker exec' to run curl inside the container ***
+          docker exec "${{ env.APP_NAME }}-current" curl http://localhost:5000/
