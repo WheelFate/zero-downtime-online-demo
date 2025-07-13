@@ -4,6 +4,11 @@
 # Use a lightweight Python base image
 FROM python:3.9-slim-buster
 
+# Install curl inside the container.
+# We first update the package lists and then install curl.
+# rm -rf /var/lib/apt/lists/* cleans up the package lists to keep the image size small.
+RUN apt-get update && apt-get install -y curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory inside the container to /app
 WORKDIR /app
 
