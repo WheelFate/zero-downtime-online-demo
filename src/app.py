@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Define the application version. We'll get this from an environment variable
 # during deployment, so we can see which version is "running".
-APP_VERSION = os.getenv("APP_VERSION", "v1.0.0 (Initial Online Demo)")
+APP_VERSION = os.getenv("APP_VERSION", "v3.0.0 (Latest & Greatest!)")
 
 # Define a route for the root URL ("/")
 @app.route('/')
