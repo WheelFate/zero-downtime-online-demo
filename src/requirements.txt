@@ -1,0 +1,4 @@
+# src/requirements.txt
+# This file lists the Python packages our application depends on.
+Flask==2.3.3      # The web framework
+gunicorn==21.2.0  # A production-ready WSGI server for Python web apps
